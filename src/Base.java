@@ -4,7 +4,7 @@ import javax.swing.JFrame;
 
 public class Base extends JFrame {
     private static ArrayList <Dulce> base= new ArrayList<>();
-    int coincide;
+    int coincide,cont;
     public Base(){
         
          }
@@ -17,40 +17,10 @@ public class Base extends JFrame {
     
     base.add(dulce);
  }
- public int ObtenerDelArreglo(String n){
-    
-    for (int i=0;i<base.size();i++){
-        Dulce dulce = base.get(i);
-        String comp = dulce.getNombre();
-        if (comp.equals(n)){
-            coincide= 1;
-        }else{
-            coincide= 2;
-        }
-    }
+ 
+ 
 
-    return coincide;
-    
- }
- public void SetDelArreglo(String name,Categoria c,int value,int posx){
 
-    Dulce dulce = base.get(posx);
-    dulce.setNombre(name);
-    dulce.setCatego(c);
-    dulce.setPrecio(value);
- }
-
- public int getposX(String nome){
-    int resultX=0;
-    for (int i=0;i<base.size();i++){
-        Dulce dulce = base.get(i);
-        String comp = dulce.getNombre();
-        if(comp.equals(nome)){
-            resultX=i;
-        }
-    }
-    return resultX;
- }
  public String prueba(){
     Dulce culde = base.get(0);
     String a= culde.getNombre();
@@ -74,4 +44,5 @@ public void Actualice(String n, Categoria c, int pre, int PosX, Base beis){
       dispose();
       App app = new App (base ,beis );
 }
+
 }

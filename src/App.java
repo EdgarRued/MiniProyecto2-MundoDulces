@@ -9,6 +9,7 @@ import java.awt.GridLayout;
 
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
@@ -53,6 +54,7 @@ public class App extends JFrame implements ActionListener, ItemListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+
             dispose();
             
             Menu1 menu = new Menu1(base,beos);
@@ -66,9 +68,13 @@ public class App extends JFrame implements ActionListener, ItemListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            if (base.isEmpty()){
+                JOptionPane.showMessageDialog(contenedor,"No hay dulces en la base","error",0);
+            }else{
             dispose();
 
             Menu2 menu2 = new Menu2(base,beos);
+        }
         }
         
        });
@@ -78,14 +84,30 @@ public class App extends JFrame implements ActionListener, ItemListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            if (base.isEmpty()){
+                JOptionPane.showMessageDialog(contenedor,"No hay dulces en la base","error",0);
+            }else{
             dispose();
             Menu3 menu3 = new Menu3(base,beos);
+        }
         }
         
        });
        panelmain.add(b3);
        b4= new JButton("Buscar Dulce ");
-       b4.addActionListener(this);
+       b4.addActionListener(new ActionListener() {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (base.isEmpty()){
+                JOptionPane.showMessageDialog(contenedor,"No hay dulces en la base","error",0);
+            }else{
+            dispose();
+            Menu4 menu4 = new Menu4(base,beos);
+        }
+        }
+        
+       });
        panelmain.add(b4);
        b5= new JButton("Listar todos los dulces");
        b5.addActionListener(this);

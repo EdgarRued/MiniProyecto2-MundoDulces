@@ -17,16 +17,16 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.ArrayList;
-public class Menu2aux extends JFrame implements ItemListener,ActionListener {
+public class Menu4aux extends JFrame implements ItemListener,ActionListener {
     JButton action;
     Container c2;
     TextField campo,camp2;
     Categoria dato;
-    String n;
+    String n,Vcategoria;
     int p,PosX,values;
     JComboBox<String> combo;
     
-    public Menu2aux(ArrayList<Dulce> objeto,Base base, int x){
+    public Menu4aux(ArrayList<Dulce> objeto,Base base, int x){
             c2= getContentPane();
             setLocation(450,200);
             setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -42,48 +42,60 @@ public class Menu2aux extends JFrame implements ItemListener,ActionListener {
             JLabel ms1 = new JLabel("Nombre del dulce ");
             panelsi.add(ms1);
             campo = new TextField(10);
+            Dulce prueba = objeto.get(x);
+            n = prueba.getNombre();
+            campo.setText(n);
+            
             panelsi.add(campo);
+            campo.setEditable(false);
             
             
 //
             
             JLabel ms2= new JLabel("Tipo de dulce");
             panelsi.add(ms2);
-            String lista [] = {"Seleccione un tipo","Dulce","Acido","Sin azucar"};
-            combo = new JComboBox<>(lista);
-            combo.addItemListener(this);
-            panelsi.add(combo);
+            TextField campillo= new TextField(10);
+            dato = prueba.getCatego();
+            if(dato==Categoria.acido){
+                Vcategoria = "Acido";
+            }if(dato==Categoria.dulce){
+                Vcategoria = "Dulce";
+            }if(dato==Categoria.notdulce){
+                Vcategoria =  "Sin azucar";
+            }
+            campillo.setText(Vcategoria);
+            panelsi.add(campillo);
+            campillo.setEditable(false);
             
 //
             
             JLabel leibol= new JLabel("Precio");
             panelsi.add(leibol);
             camp2= new TextField(10);
+            camp2.setText(prueba.getPrecio()+"");
             panelsi.add(camp2);
+            camp2.setEditable(false);
+            
             
 
             
             GridLayout grid = new GridLayout(1,3,30,30);
             JPanel Panel2= new JPanel(grid);
             Panel2.add(empty);
-            action= new JButton("Actualizar");
+            action= new JButton("Volver");
             action.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent ae) {
-                    int var = Integer.parseInt(camp2.getText());
-                    n=campo.getText();
-                    ArrayList<Dulce> p = objeto;
-                    values= Integer.parseInt(camp2.getText());
+                    
                     
                         
-                        dispose();
-                            base.Actualice(n, dato, var, x,base);
+                       
 
                         
                     
-                    
-                    JOptionPane.showMessageDialog(c2,"Dulce actualizado!","exito",1);
                     dispose();
+                    App ap = new App(objeto, base);
+                    
                     
                 }
             });
@@ -104,22 +116,7 @@ public class Menu2aux extends JFrame implements ItemListener,ActionListener {
     @Override
     public void itemStateChanged(ItemEvent e) {
         
-        if(e.getSource()==combo){
-            if(e.getStateChange()==1){
-                if(e.getItem()=="Dulce"){
-                    dato = Categoria.dulce;
-                }
-                if(e.getItem()=="Acido"){
-                    dato = Categoria.acido;
-                }
-                if(e.getItem()=="Sin azucar"){
-                    dato = Categoria.notdulce;
-                }
-                if(e.getItem()=="Seleccione un tipo"){
-                    dato = null;
-                }
-            }
-          }
+       
     }
 
     @Override
@@ -127,3 +124,4 @@ public class Menu2aux extends JFrame implements ItemListener,ActionListener {
         
     }
 }
+

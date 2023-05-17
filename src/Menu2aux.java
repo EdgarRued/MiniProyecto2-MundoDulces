@@ -9,23 +9,23 @@ import java.awt.GridLayout;
 import java.awt.TextField;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-
-public class Menu1 extends JFrame implements ActionListener,ItemListener {
+public class Menu2aux extends JFrame implements ItemListener,ActionListener {
     JButton action;
     Container c2;
     TextField campo,camp2;
     Categoria dato;
     String n;
-    int p;
+    int p,PosX,values;
     JComboBox<String> combo;
     
-    public Menu1(Base objeto){
+    public Menu2aux(Base objeto){
             c2= getContentPane();
             setLocation(450,200);
             setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -65,16 +65,18 @@ public class Menu1 extends JFrame implements ActionListener,ItemListener {
             GridLayout grid = new GridLayout(1,3,30,30);
             JPanel Panel2= new JPanel(grid);
             Panel2.add(empty);
-            action= new JButton("Agregar Dulce");
+            action= new JButton("Actualizar");
             action.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent ae) {
-                    p=Integer.parseInt(camp2.getText());
+                    
                     n=campo.getText();
-                    Dulce dolci= new Dulce(n, dato, p);
-                    objeto.InstertarAlArreglo(dolci);
+                    PosX = objeto.getposX(n);
+                    values= Integer.parseInt(camp2.getText());
+                    objeto.SetDelArreglo(n, dato,values,PosX  );
+                    JOptionPane.showMessageDialog(c2,"Dulce actualizado!","exito",1);
                     dispose();
-                    App obj = new App();
+                    App menu = new App();
                 }
             });
             Panel2.add(action);

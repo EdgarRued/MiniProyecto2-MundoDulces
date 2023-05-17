@@ -24,16 +24,17 @@ public class App extends JFrame implements ActionListener, ItemListener {
         
         FlowLayout flowLayout;
         GridLayout gridLayout;
-        Base base = new Base();
+        
         
         
         ArrayList <JButton> lista;
         JButton  b1,b2,b3,b4,b5,b6;
         
         
-    public  App() {
+    public  App(ArrayList<Dulce> base, Base beos) {
         contenedor= getContentPane();
         setLocation(400,200);
+        setTitle("Mundo Dulces");
        gridLayout= new GridLayout(1,3, 30,30);
        contenedor.setLayout(gridLayout);
        JPanel panelmain = new JPanel();
@@ -48,13 +49,40 @@ public class App extends JFrame implements ActionListener, ItemListener {
        
        
        b1= new JButton("Ingresar Dulces");
-       b1.addActionListener(this);
+       b1.addActionListener(new ActionListener() {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            dispose();
+            
+            Menu1 menu = new Menu1(base,beos);
+        }
+        
+       });
        panelmain.add(b1);
+
        b2= new JButton("Actualizar Dulce");
-       b2.addActionListener(this);
+       b2.addActionListener(new ActionListener() {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            dispose();
+
+            Menu2 menu2 = new Menu2(base,beos);
+        }
+        
+       });
        panelmain.add(b2);
        b3= new JButton("Eliminar Dulce");
-       b3.addActionListener(this);
+       b3.addActionListener(new ActionListener() {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            dispose();
+            Menu3 menu3 = new Menu3(base,beos);
+        }
+        
+       });
        panelmain.add(b3);
        b4= new JButton("Buscar Dulce ");
        b4.addActionListener(this);
@@ -68,7 +96,7 @@ public class App extends JFrame implements ActionListener, ItemListener {
        contenedor.add(panelmain);
        contenedor.add(labelR);
        setSize(650, 300);
-       setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+       setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
        
        setVisible(true);
 
@@ -83,13 +111,10 @@ public class App extends JFrame implements ActionListener, ItemListener {
        
         
         if (e.getSource()==b1){
-            dispose();
-            
-            Menu1 menu = new Menu1(base);
+          
         }
         if (e.getSource()==b2){
-            dispose();
-            Menu2 menu2 = new Menu2(base);
+            
         }
         
     

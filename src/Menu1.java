@@ -15,6 +15,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.ArrayList;
 
 public class Menu1 extends JFrame implements ActionListener,ItemListener {
     JButton action;
@@ -25,7 +26,8 @@ public class Menu1 extends JFrame implements ActionListener,ItemListener {
     int p;
     JComboBox<String> combo;
     
-    public Menu1(Base objeto){
+    public Menu1(ArrayList<Dulce> objeto,Base base){
+        
             c2= getContentPane();
             setLocation(450,200);
             setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -66,15 +68,20 @@ public class Menu1 extends JFrame implements ActionListener,ItemListener {
             JPanel Panel2= new JPanel(grid);
             Panel2.add(empty);
             action= new JButton("Agregar Dulce");
+            
             action.addActionListener(new ActionListener() {
-                @Override
+                
+                
                 public void actionPerformed(ActionEvent ae) {
+                    
                     p=Integer.parseInt(camp2.getText());
                     n=campo.getText();
                     Dulce dolci= new Dulce(n, dato, p);
-                    objeto.InstertarAlArreglo(dolci);
+                    
+                    objeto.add(dolci);
+                    base.DataUpload(objeto);
                     dispose();
-                    App obj = new App();
+                    App obj = new App(base.obtain(),base);
                 }
             });
             Panel2.add(action);

@@ -1,4 +1,3 @@
-
 import java.awt.Container;
 
 import javax.swing.JOptionPane;
@@ -17,68 +16,65 @@ import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
-public class Menu3 extends JFrame implements ActionListener,ItemListener {
+
+
+public class Menu4 extends JFrame {
     Container contenedor;
     TextField text,campo,camp2;
-    JComboBox<String> combo;
+    JComboBox combo;
     Categoria dato;
     JButton action;
     String n,naux;
-    int values,cont;
-    
-    public Menu3(ArrayList<Dulce> objeto, Base base){
+    int values,cont,PosX;
+    static int p=0;
+    public Menu4(ArrayList<Dulce> base, Base beis){
         
         contenedor=getContentPane();
         setLocation(450,200);
-        
 
         setSize(400,300);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new GridLayout(1, 1, 20, 20));
         JPanel panel = new JPanel();
         panel.setLayout(new FlowLayout(1,25,25));
-        JLabel asd = new JLabel("Nombre del dulce a eliminar");
+        JLabel asd = new JLabel("Nombre del dulce a buscar");
         panel.add(asd);
          text = new TextField(10);
         panel.add(text);
-        JButton boton = new JButton("Aceptar");
-        ArrayList<Dulce> p = base.obtain();
+        JButton boton = new JButton("Buscar");
+        
+        
         boton.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-             
-                n= text.getText();
-                String aux=text.getText();
-                int pe=0;
-                int PosX=1411;
-                for (int i=0;i<p.size();i++){
-                    Dulce dulce = p.get(i);
+                
+                
+                n=text.getText();
+                for (int i=0;i<base.size();i++){
+                    Dulce dulce = base.get(i);
                     String comp = dulce.getNombre();
-                    
                     if (comp.equals(n)){
-                        pe= 1;
-                        PosX=i;
-                        JOptionPane.showMessageDialog(contenedor,"Dulce eliminado","exito",1);
-                        p.remove(i);
-                        base.DataUpload(p);
+                        p=1;
+                        PosX=i; 
+                        contenedor.setVisible(false);
                         dispose();
-                        App ap= new App(objeto,base);
-                    }if(pe==0){
-                        pe= 2;
+                        Menu4aux auxiliar = new Menu4aux(base, beis, PosX);
+                    } if(p==0){
+                        p= 2;
                     }
                 }
-                    
                 
-                if (pe==1){
-
+                
+                
+                if (p==1){
                     
-                     
+                    
             
-        }else if(pe==2){
-            JOptionPane.showMessageDialog(contenedor,"no se encontro el dulce","Error",0);
+        }else if(p==2){
+            JOptionPane.showMessageDialog(contenedor,"no se encontro el dulce","error",0);
             dispose();
-            App obj = new App(objeto,base);
+            App obj = new App(base, beis);
         }
     }
             
@@ -89,16 +85,14 @@ public class Menu3 extends JFrame implements ActionListener,ItemListener {
 
         setVisible(true);
     }
-    @Override
-    public void itemStateChanged(ItemEvent e) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'itemStateChanged'");
-    }
-
-    @Override
+   
     public void actionPerformed(ActionEvent e) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
     }
-    
+   
+    public void itemStateChanged(ItemEvent e) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'itemStateChanged'");
+    }
 }

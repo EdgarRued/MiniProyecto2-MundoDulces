@@ -20,6 +20,7 @@ import java.util.ArrayList;
 public class Menu1 extends JFrame implements ActionListener,ItemListener {
     JButton action;
     Container c2;
+    
     TextField campo,camp2;
     Categoria dato;
     String n;
@@ -50,7 +51,7 @@ public class Menu1 extends JFrame implements ActionListener,ItemListener {
             
             JLabel ms2= new JLabel("Tipo de dulce");
             panelsi.add(ms2);
-            String lista [] = {"Dulce","Acido","Sin azucar"};
+            String lista [] = {"Seleccione un tipo","Dulce","Acido","Sin azucar"};
             combo = new JComboBox<>(lista);
             combo.addItemListener(this);
             panelsi.add(combo);
@@ -112,7 +113,12 @@ public class Menu1 extends JFrame implements ActionListener,ItemListener {
                 if(e.getItem()=="Sin azucar"){
                     dato = Categoria.notdulce;
                 }
+                if(e.getItem()=="Seleccione un tipo"){
+                    dato = null;
+                }
             }
+                
+            
           }
     }
 

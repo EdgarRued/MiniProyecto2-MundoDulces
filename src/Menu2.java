@@ -1,6 +1,6 @@
-import java.awt.BorderLayout;
+
 import java.awt.Container;
-import java.awt.Container;
+
 import javax.swing.JOptionPane;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
@@ -11,9 +11,9 @@ import java.util.ArrayList;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
+
 import javax.swing.JPanel;
-import javax.swing.text.AbstractDocument.Content;
+
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -56,12 +56,13 @@ public class Menu2 extends JFrame implements ActionListener ,ItemListener {
                     Dulce dulce = base.get(i);
                     String comp = dulce.getNombre();
                     if (comp.equals(n)){
+                        p=1;
                         PosX=i; 
                         contenedor.setVisible(false);
                         dispose();
                         Menu2aux auxiliar = new Menu2aux(base, beis, PosX);
-                    }{
-                        //p= 2;
+                    } if(p==0){
+                        p= 2;
                     }
                 }
                 
@@ -72,9 +73,9 @@ public class Menu2 extends JFrame implements ActionListener ,ItemListener {
                     
             
         }else if(p==2){
-            //JOptionPane.showMessageDialog(contenedor,"no se encontro el dulce");
-            //dispose();
-            //App obj = new App(base, beis);
+            JOptionPane.showMessageDialog(contenedor,"no se encontro el dulce","error",0);
+            dispose();
+            App obj = new App(base, beis);
         }
     }
             

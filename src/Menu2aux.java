@@ -16,6 +16,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.ArrayList;
 public class Menu2aux extends JFrame implements ItemListener,ActionListener {
     JButton action;
     Container c2;
@@ -25,7 +26,7 @@ public class Menu2aux extends JFrame implements ItemListener,ActionListener {
     int p,PosX,values;
     JComboBox<String> combo;
     
-    public Menu2aux(Base objeto){
+    public Menu2aux(ArrayList<Dulce> objeto,Base base, int x){
             c2= getContentPane();
             setLocation(450,200);
             setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -69,14 +70,21 @@ public class Menu2aux extends JFrame implements ItemListener,ActionListener {
             action.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent ae) {
-                    
+                    int var = Integer.parseInt(camp2.getText());
                     n=campo.getText();
-                    PosX = objeto.getposX(n);
+                    ArrayList<Dulce> p = objeto;
                     values= Integer.parseInt(camp2.getText());
-                    objeto.SetDelArreglo(n, dato,values,PosX  );
+                    
+                        
+                        dispose();
+                            base.Actualice(n, dato, var, x,base);
+
+                        
+                    
+                    
                     JOptionPane.showMessageDialog(c2,"Dulce actualizado!","exito",1);
                     dispose();
-                    App menu = new App();
+                    
                 }
             });
             Panel2.add(action);

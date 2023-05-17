@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 
-public class Base {
+import javax.swing.JFrame;
+
+public class Base extends JFrame {
     private static ArrayList <Dulce> base= new ArrayList<>();
     int coincide;
     public Base(){
@@ -54,4 +56,22 @@ public class Base {
     String a= culde.getNombre();
     return a;
  }
+ public void EliminarDelArreglo(String i){
+   
+ }
+ public ArrayList<Dulce> obtain(){
+      return base;
+ }
+
+ public void DataUpload(ArrayList<Dulce> P){
+      base = P;
+ }
+public void Actualice(String n, Categoria c, int pre, int PosX, Base beis){
+      Dulce dulce = base.get(PosX);
+      dulce.setNombre(n);
+      dulce.setCatego(c);
+      dulce.setPrecio(pre);
+      dispose();
+      App app = new App (base ,beis );
+}
 }

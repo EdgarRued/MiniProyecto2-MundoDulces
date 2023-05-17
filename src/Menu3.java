@@ -1,4 +1,4 @@
-import java.awt.BorderLayout;
+
 import java.awt.Container;
 import java.awt.Container;
 import javax.swing.JOptionPane;
@@ -11,70 +11,74 @@ import java.util.ArrayList;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
+
 import javax.swing.JPanel;
-import javax.swing.text.AbstractDocument.Content;
+
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
-
-
-public class Menu2 extends JFrame implements ActionListener ,ItemListener {
+public class Menu3 extends JFrame implements ActionListener,ItemListener {
     Container contenedor;
     TextField text,campo,camp2;
-    JComboBox combo;
+    JComboBox<String> combo;
     Categoria dato;
     JButton action;
     String n,naux;
-    int values,cont,PosX;
-    static int p=0;
-    public Menu2(ArrayList<Dulce> base, Base beis){
+    int values,cont;
+    
+    public Menu3(ArrayList<Dulce> objeto, Base base){
         
         contenedor=getContentPane();
         setLocation(450,200);
+        
 
         setSize(400,300);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new GridLayout(1, 1, 20, 20));
         JPanel panel = new JPanel();
         panel.setLayout(new FlowLayout(1,25,25));
-        JLabel asd = new JLabel("Nombre del dulce a actualizar");
+        JLabel asd = new JLabel("Nombre del dulce a eliminar");
         panel.add(asd);
          text = new TextField(10);
         panel.add(text);
         JButton boton = new JButton("Aceptar");
-        
-        
+        ArrayList<Dulce> p = base.obtain();
         boton.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                
-                
-                n=text.getText();
-                for (int i=0;i<base.size();i++){
-                    Dulce dulce = base.get(i);
+             
+                n= text.getText();
+                String aux=text.getText();
+                int pe=0;
+                int PosX=1411;
+                for (int i=0;i<p.size();i++){
+                    Dulce dulce = p.get(i);
                     String comp = dulce.getNombre();
+                    
                     if (comp.equals(n)){
-                        PosX=i; 
-                        contenedor.setVisible(false);
+                        pe= 1;
+                        PosX=i;
+                        JOptionPane.showMessageDialog(contenedor,"Dulce eliminado","exito",1);
+                        p.remove(i);
+                        base.DataUpload(p);
                         dispose();
-                        Menu2aux auxiliar = new Menu2aux(base, beis, PosX);
-                    }{
-                        //p= 2;
+                        App ap= new App(objeto,base);
+                    }else if(comp.compareTo(n)==0){
+                        pe= 2;
                     }
                 }
-                
-                
-                
-                if (p==1){
                     
+                
+                if (pe==1){
+
                     
+                     
             
-        }else if(p==2){
-            //JOptionPane.showMessageDialog(contenedor,"no se encontro el dulce");
-            //dispose();
-            //App obj = new App(base, beis);
+        }else if(pe==2){
+            JOptionPane.showMessageDialog(contenedor,"no se encontro el dulce","Error",0);
+            dispose();
+            App obj = new App(objeto,base);
         }
     }
             
@@ -86,13 +90,15 @@ public class Menu2 extends JFrame implements ActionListener ,ItemListener {
         setVisible(true);
     }
     @Override
-    public void actionPerformed(ActionEvent e) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
-    }
-    @Override
     public void itemStateChanged(ItemEvent e) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'itemStateChanged'");
     }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
+    }
+    
 }

@@ -30,6 +30,7 @@ public class Menu2aux extends JFrame implements ItemListener,ActionListener {
             c2= getContentPane();
             setLocation(450,200);
             setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            setTitle("Datos para actualizar dulce");
         GridLayout newgrid1= new GridLayout(1,3,30,30);
             c2.setLayout(new FlowLayout(1));
             JLabel empty= new JLabel("");

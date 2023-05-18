@@ -31,6 +31,7 @@ public class Menu4 extends JFrame {
         
         contenedor=getContentPane();
         setLocation(450,200);
+        setTitle("Buscar dulce");
 
         setSize(400,300);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

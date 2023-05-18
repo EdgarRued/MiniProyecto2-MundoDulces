@@ -32,6 +32,7 @@ public class Menu2 extends JFrame implements ActionListener ,ItemListener {
         
         contenedor=getContentPane();
         setLocation(450,200);
+        setTitle("Actualizar dulce");
 
         setSize(400,300);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

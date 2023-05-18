@@ -9,6 +9,7 @@ import java.awt.GridLayout;
 import java.awt.TextField;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import java.awt.event.ActionEvent;
@@ -32,6 +33,7 @@ public class Menu1 extends JFrame implements ActionListener,ItemListener {
             c2= getContentPane();
             setLocation(450,200);
             setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            setTitle("Insertar dulce");
         GridLayout newgrid1= new GridLayout(1,3,30,30);
             c2.setLayout(new FlowLayout(1));
             JLabel empty= new JLabel("");
@@ -81,7 +83,9 @@ public class Menu1 extends JFrame implements ActionListener,ItemListener {
                     
                     objeto.add(dolci);
                     base.DataUpload(objeto);
+                    JOptionPane.showMessageDialog(c2,"Exito","Proceso completado",1);
                     dispose();
+
                     App obj = new App(base.obtain(),base);
                 }
             });

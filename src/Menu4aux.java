@@ -29,6 +29,7 @@ public class Menu4aux extends JFrame implements ItemListener,ActionListener {
     public Menu4aux(ArrayList<Dulce> objeto,Base base, int x){
             c2= getContentPane();
             setLocation(450,200);
+            setTitle("Mostrar datos del dulce");
             setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         GridLayout newgrid1= new GridLayout(1,3,30,30);
             c2.setLayout(new FlowLayout(1));

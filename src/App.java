@@ -110,10 +110,34 @@ public class App extends JFrame implements ActionListener, ItemListener {
        });
        panelmain.add(b4);
        b5= new JButton("Listar todos los dulces");
-       b5.addActionListener(this);
+       b5.addActionListener(new ActionListener() {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (base.isEmpty()){
+                JOptionPane.showMessageDialog(contenedor,"No hay dulces en la base","error",0);
+            }else{
+            dispose();
+            Menu5 menu5 = new Menu5(base,beos);
+        }
+        }
+        
+       });
        panelmain.add(b5);
        b6= new JButton("Resumen de dulces");
-       b6.addActionListener(this);
+       b6.addActionListener(new ActionListener() {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (base.isEmpty()){
+                JOptionPane.showMessageDialog(contenedor,"No hay dulces en la base","error",0);
+            }else{
+            dispose();
+            Menu6 menu6 = new Menu6(base,beos);
+        }
+        }
+        
+       });
        panelmain.add(b6);
        contenedor.add(panelmain);
        contenedor.add(labelR);
